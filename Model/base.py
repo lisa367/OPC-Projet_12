@@ -26,20 +26,25 @@ def get_all(table):
 		return query.fetchall()
 		
 def update(table, id, data):
-		command = f"UPDATE {table} SET {data} WHERE id={id}"
-		cur.execute(command)
+	command = f"UPDATE {table} SET {data} WHERE id={id}"
+	cur.execute(command)
 
 def delete(table, id):
-		command = f"DELETE {table} WHERE id={id}"
-		cur.execute(command)
+	command = f"DELETE {table} WHERE id={id}"
+	cur.execute(command)
 
 def filter_table(table, columns=None, conditions=None):
-		# command = f""SELECT {columns if columns else '*'} FROM {table}""
-		if conditions :
-			command = command + f"WHERE {conditions}"
-
-		query = cur.execute(command)
-		return query.fetchall()
+	# command = f""SELECT {columns if columns else '*'} FROM {table}""
+    if columns:
+        # command = f""SELECT {columns} FROM {table}""
+        command = ''
+	else :
+		# command = f""SELECT * FROM {table}""
+        command = ''	
+	if conditions :
+		command = command + f"WHERE {conditions}"
+	query = cur.execute(command)
+	return query.fetchall()
 
 
 con.close()
