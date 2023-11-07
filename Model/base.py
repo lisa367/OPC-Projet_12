@@ -40,3 +40,6 @@ def filter_table(table, columns=None, conditions=None):
 
 		query = cur.execute(command)
 		return query.fetchall()
+
+
+con.close()
