@@ -8,11 +8,11 @@ def new_entry(table, data):
 		command = """INSERT INTO {table} VALUES(?)"""
 		cur.executemany(command, new_row)
 		id = cur.lastrowid
-		new = cur.lastrow
+		# new = cur.lastrow
 		con.commit()
-		# print('dernier id: %d' % id)
-		print('nouvelle ligne : %d' % new)
-		return cur.lastrow
+		print('dernier id: %d' % id)
+		# print('nouvelle ligne : %d' % new)
+		return id
 
 
 def get_entry(table, id):
