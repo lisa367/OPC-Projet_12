@@ -5,7 +5,19 @@ cur = con.cursor()
 
 def new_entry(table, data):
 	new_row = tuple(data)
-	command = """INSERT INTO {table} VALUES(?)"""
+	command = f"""INSERT INTO {table} VALUES(?)"""
+	cur.execute(command, new_row)
+	id = cur.lastrowid
+	# new = cur.lastrow
+	con.commit()
+	print('dernier id: %d' % id)
+	# print('nouvelle ligne : %d' % new)
+
+	return id
+
+def new_entries(table, data):
+	new_row = tuple(data)
+	command = f"""INSERT INTO {table} VALUES(?)"""
 	cur.executemany(command, new_row)
 	id = cur.lastrowid
 	# new = cur.lastrow
