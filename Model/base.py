@@ -3,9 +3,9 @@ import sqlite3
 con = sqlite3.connect("database.db")
 cur = con.cursor()
 
-def new_entry(table, data):
+def new_entry(table, table_columns, data):
 	new_row = tuple(data)
-	command = f"""INSERT INTO {table} VALUES(?)"""
+	command = f"""INSERT INTO {table} {table_columns} VALUES{data}"""
 	cur.execute(command, new_row)
 	id = cur.lastrowid
 	# new = cur.lastrow
