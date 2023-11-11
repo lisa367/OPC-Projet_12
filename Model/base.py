@@ -15,9 +15,9 @@ def new_entry(table, table_columns, data):
 
 	return id
 
-def new_entries(table, data):
+def new_entries(table, table_columns, data):
 	new_row = tuple(data)
-	command = f"""INSERT INTO {table} VALUES(?)"""
+	command = f"""INSERT INTO {table} {table_columns} VALUES{data}"""
 	cur.executemany(command, new_row)
 	id = cur.lastrowid
 	# new = cur.lastrow
