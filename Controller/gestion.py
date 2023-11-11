@@ -30,8 +30,8 @@ def gestion_controller():
 		pass
 		# operations_crud(object_name, table_name, table_columns)
 	elif menu_choisi == "affichage-evenements":
-		pass
+		affichage_evenements()
 	elif menu_choisi == "support-evenements":
-		pass
+		support_evenements()
 	else :
 		return 0
