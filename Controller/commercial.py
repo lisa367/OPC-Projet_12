@@ -12,8 +12,8 @@ def commercial_controller():
 	elif menu_choisi == "gestion-contrats":
 		pass
 	elif menu_choisi == "affichage-contrats":
-		quitter()
+		pass
 	elif menu_choisi == "evenements":
-		quitter()
+		pass
 	else :
 		return 0
