@@ -53,11 +53,29 @@ def get_object_data(object_name, table_columns):
 		object_data.append((column, data))
 	return object_data
 
+
+def get_query_conditions():
+	stop = False
+	conditions = []
+	while not stop:
+		ajout = input("Ajouter une condition ? oui ou non : ")
+		if ajout.lower() == "oui":
+			if condition :
+				AND_or_OR = input("AND ou OR").strip()
+				while AND_or_OR not in ["AND", "OR"]:
+					pass
+			condition = input("Renseignez votre condition : ")
+		else:
+			stop = True
+	return conditions
+
 def get_query_filters(table_columns):
 	columns_names = ", ".join(table_columns)
 	print(f"""Colonnes de la table :\n{columns_names})""")
 	selected_columns = input("Veuillez renseigner les colonnes à afficher, séparées d'un espace")
-	selected_conditions = ""
+	conditions_list = get_query_conditions()
+	selected_conditions = " ".join(conditions_list)
+	
 
 """
 def login_menu():
