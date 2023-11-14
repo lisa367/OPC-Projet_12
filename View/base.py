@@ -75,7 +75,11 @@ def get_query_filters(table_columns):
 	selected_columns = input("Veuillez renseigner les colonnes à afficher, séparées d'un espace")
 	conditions_list = get_query_conditions()
 	selected_conditions = " ".join(conditions_list)
-	
+
+
+def add_or_modify(object):
+	action = input(f"Add (1) or modify (2) {object}. Enter 1 or 2 :")
+	return action
 
 """
 def login_menu():
