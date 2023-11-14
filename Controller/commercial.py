@@ -1,4 +1,4 @@
-from Model.base import new_entry, get_entry, get_all, filter_table,  quitter
+from Model.base import new_entry, get_entry, get_all, filter_table, quitter
 from Model.contrats import contrats_colonnes
 from View.base import affichage_menu, get_object_id, get_query_filters
 from View.commercial import COMMERCIAL_MENU
