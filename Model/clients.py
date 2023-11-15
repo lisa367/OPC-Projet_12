@@ -3,7 +3,7 @@ import sqlite3
 con = sqlite3.connect("database.db")
 cur = con.cursor()
 
-contrats_colonnes = ["prenom", "nom", "departement", "role", "email",]
+contrats_colonnes = ["nom_complet", "email", "telephone", "nom_entreprise", "date_premier_contact", "date_dernier_contact", "collaborateur_ref",]
 
 
 def create_table():
@@ -12,10 +12,10 @@ def create_table():
 		cur.execute("""CREATE TABLE IF NOT EXISTS contrats(
 					nom_complet INTEGER FOREIGN KEY, 
 					email TEXT,
-					telephone REAL, 
+					telephone TEXT, 
 					nom_entreprise TEXT,
 					date_premier_contact TEXT,
-                    date_dernier_contact TEXT DEFAULT 'non-signé',
+                    date_dernier_contact TEXT,
                     contact_commercial TEXT,
 			  		collaborateur_ref INTEGER FOREIGN KEY
 )
