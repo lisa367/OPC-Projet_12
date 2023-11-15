@@ -17,7 +17,7 @@ def create_table():
 					date_premier_contact TEXT,
                     date_dernier_contact TEXT,
                     contact_commercial TEXT,
-			  		collaborateur_ref INTEGER FOREIGN KEY
+			  		collaborateur_id INTEGER FOREIGN KEY
 )
 """)
 
