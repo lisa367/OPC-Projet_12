@@ -15,7 +15,8 @@ def create_table():
 					montant_facture REAL, 
 					montant_redevable TEXT,
 					date_creation TEXT,
-                    statut TEXT DEFAULT 'non-signé'
+                    statut TEXT DEFAULT 'non-signé',
+			  		collaborateur_ref INTEGER FOREIGN KEY
 )
 """)
 
