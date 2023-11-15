@@ -1,6 +1,6 @@
 from Model.base import new_entry, get_entry, get_all, filter_table, quitter
 from Model.contrats import contrats_colonnes
-from View.base import affichage_menu, get_object_id, get_query_filters
+from View.base import affichage_menu, get_object_id, get_query_filters, add_or_modify
 from View.commercial import COMMERCIAL_MENU
 
 def commercial_controller():
@@ -17,6 +17,10 @@ def commercial_controller():
 		query_result = filter_table("contrats", columns, conditions)
 		print(query_result)
 	elif menu_choisi == "evenements":
-		pass
+		action = add_or_modify("evenement")
+		if action == "ajouter":
+			pass
+		elif action == "modifier":
+			pass
 	else :
 		return 0
