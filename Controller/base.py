@@ -1,16 +1,38 @@
+import sys
+import sqlite3
+
 from Model.base import new_entry, get_entry, get_all, update, delete, filter_table
+from Model.collaborateurs import collaborateurs_colonnes
 from View.base import LOGIN_MENU, CRUD_MENU , affichage_menu, get_user_id, quitter, get_object_id, get_object_data
+
+
+con = sqlite3.connect("database.db")
+cur = con.cursor()
+
+def quitter():
+	con.close()
+	sys.exit()
+
+
+def connexion():
+	data_utilisateur = get_object_data("collaborateur", collaborateurs_colonnes)
+	profil_utilisateur = get_entry("collaborateurs", data_utilisateur)
+	return profil_utilisateur
+
+
+def inscription():
+	id_utilisateur = get_user_id()
+	profil_utilisateur = new_entry("collaborateurs", id_utilisateur)
+	return profil_utilisateur
 
 
 def login():
 	options = {"1": "connexion", "2": "inscription", "3": "quitter"}
 	menu_choisi = affichage_menu(LOGIN_MENU, options)
 	if menu_choisi == "connexion":
-		id_utilisateur = get_user_id()
-		profil_utilisateur = new_entry("collaborateurs", id_utilisateur)
-		return profil_utilisateur
+		connexion()
 	elif menu_choisi == "inscription":
-		pass
+		inscription()
 	elif menu_choisi == "quitter":
 		quitter()
 	else :
