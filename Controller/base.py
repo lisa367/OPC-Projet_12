@@ -15,14 +15,16 @@ def quitter():
 
 
 def connexion():
-	data_utilisateur = get_object_data("collaborateur", collaborateurs_colonnes)
-	profil_utilisateur = get_entry("collaborateurs", data_utilisateur)
+	id_utilisateur = get_user_id()
+	profil_utilisateur = new_entry("collaborateurs", id_utilisateur)
 	return profil_utilisateur
 
 
 def inscription():
-	id_utilisateur = get_user_id()
-	profil_utilisateur = new_entry("collaborateurs", id_utilisateur)
+	data_utilisateur = get_object_data("collaborateur", collaborateurs_colonnes)
+	if get_all("collaborateurs" == []):
+		data_utilisateur = [("rowid", 1)] + data_utilisateur
+	profil_utilisateur = get_entry("collaborateurs", data_utilisateur)
 	return profil_utilisateur
 
 
