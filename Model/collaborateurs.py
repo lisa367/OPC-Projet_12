@@ -6,7 +6,7 @@ cur = con.cursor()
 collaborateurs_colonnes = ["prenom", "nom", "departement", "role", "email",]
 
 
-def create_table():
+def create_table_collaborateurs():
 		# command = f"""CREATE TABLE IF NOT EXISTS {employees}(
 					# title, year, score)"""
 		cur.execute("""CREATE TABLE IF NOT EXISTS collaborateurs(
