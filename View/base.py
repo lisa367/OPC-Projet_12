@@ -1,4 +1,3 @@
-import sys
 import sqlite3
 
 con = sqlite3.connect("database.db")
@@ -33,9 +32,6 @@ def get_user_id():
 	id_utilisateur = input("Veuillez renseigner votre identifiant : ")
 	return id_utilisateur
 
-def quitter():
-	con.close()
-	sys.exit()
 
 def get_object_id(object_name):
 	if object_name == "evenment":
