@@ -6,13 +6,12 @@ cur = con.cursor()
 evenements_colonnes = ["nom_evenement", "lieu", "id_contrat", "nom_client", "email_client", "telephone_client", "date_debut", "date_fin", "nombre_invites", "commentaires", "contact_support", "collaborateur_id", ]
 
 
-def create_table():
+def create_table_evenements():
 		# command = f"""CREATE TABLE IF NOT EXISTS {employees}(
 					# title, year, score)"""
 		cur.execute("""CREATE TABLE IF NOT EXISTS contrats(
-					nom_evenement INTEGER FOREIGN KEY,
-                    lieu TEXT,
-                    id_contrat INTEGER FOREIGN KEY, 
+					nom_evenement TEXT,
+                    lieu TEXT, 
                     nom_client TEXT,
 					email_client TEXT,
 					telephone_client TEXT, 
@@ -21,7 +20,10 @@ def create_table():
                     nombre_invites INTEGER,
                     commentaires TEXT,
                     contact_support TEXT,
-			  		collaborateur_id INTEGER FOREIGN KEY
+			  		contrat_id INTEGER, 
+			  		FOREIGN KEY (contrat_id) REFERENCES contrats (rowid),
+			  		collaborateur_id INTEGER,
+			  		FOREIGN KEY (collaborateur_id) REFERENCES collaborateurs (rowid)
 )
 """)
 
