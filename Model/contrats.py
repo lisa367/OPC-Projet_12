@@ -3,7 +3,7 @@ import sqlite3
 con = sqlite3.connect("database.db")
 cur = con.cursor()
 
-contrats_colonnes = ["prenom", "nom", "departement", "role", "email",]
+contrats_colonnes = ["client_id", "contact_commercial", "montant_facture", "montant_redevable", "date_creation", "statut", "collaborateur_id"]
 
 
 def create_table():
