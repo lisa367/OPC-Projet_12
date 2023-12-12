@@ -22,8 +22,8 @@ def connexion():
 
 def inscription():
 	data_utilisateur = get_object_data("collaborateur", collaborateurs_colonnes)
-	if get_all("collaborateurs" == []):
-		data_utilisateur = [("rowid", 1)] + data_utilisateur
+	""" if get_all("collaborateurs" == []):
+		data_utilisateur = [("rowid", 1)] + data_utilisateur """
 	profil_utilisateur = get_entry("collaborateurs", data_utilisateur)
 	return profil_utilisateur
 
@@ -55,16 +55,19 @@ def operations_crud(object_name, table_name, table_columns):
 
 	if option_choisie == "ajouter":
 		object_data = get_object_data(object_name, table_columns)
-		new_object = new_entry(table_name, object_name)
-		# fonction pour sauvegarder la nouvelle entrée
+		new_entry(table_name, object_name)
+
 	elif option_choisie == "modifier":
 		object_id = get_object_id(object_name)
 		object_data = get_object_data(table_name, object_name)
 		update(table_name, object_id, object_data)
+
 	elif option_choisie == "supprimer":
 		object_id = get_object_id(object_name)
 		delete(table_name, object_id)
+
 	elif option_choisie == "retour":
 		pass
+	
 	else :
 		return 0
