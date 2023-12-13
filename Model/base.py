@@ -48,12 +48,14 @@ def get_all(table):
 	return query.fetchall()
 		
 def update(table, id, data):
-	command = f"UPDATE {table} SET {data} WHERE id={id}"
+	command = f"UPDATE {table} SET {data} WHERE rowid={id}"
 	cur.execute(command)
+	con.commit()
 
 def delete(table, id):
-	command = f"DELETE {table} WHERE id={id}"
+	command = f"DELETE {table} WHERE rowid={id}"
 	cur.execute(command)
+	con.commit()
 	
 
 def filter_table(table, columns=None, conditions=None):
