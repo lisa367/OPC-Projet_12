@@ -1,10 +1,20 @@
 import os
 import sentry_sdk
-from Controller.base import accueil, retreive_user_profile, menu_selon_departement
+from Controller.base import accueil, retreive_user_profile
 from Controller.gestion import gestion_controller
 from Controller.commercial import commercial_controller
 from Controller.support import support_controller
 
+
+def menu_selon_departement(profil_utilisateur):
+	if profil_utilisateur["departement"].lower() == "gestion":
+		gestion_controller()
+	elif profil_utilisateur["departement"].lower() == "commercial":
+		commercial_controller()
+	elif profil_utilisateur["departement"].lower() == "support":
+		support_controller()
+	else:
+		return 0
 
 
 def run_program():
