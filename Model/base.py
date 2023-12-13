@@ -4,9 +4,9 @@ con = sqlite3.connect("database.db")
 cur = con.cursor()
 
 def new_entry(table, table_columns, data):
-	new_row = tuple(data)
+	# new_row = tuple(data)
 	command = f"""INSERT INTO {table} {table_columns} VALUES{data}"""
-	cur.execute(command, new_row)
+	cur.execute(command)
 	id = cur.lastrowid
 	# new = cur.lastrow
 	con.commit()
@@ -58,7 +58,7 @@ def filter_table(table, columns=None, conditions=None):
 		return query.fetchall()
 
     
-con.close()
+# con.close()
 
 
 """ def filter_table(table, columns=None, conditions=None):
