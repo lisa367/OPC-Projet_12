@@ -2,6 +2,9 @@ import os
 import sys
 import sqlite3
 
+from Controller.gestion import gestion_controller
+from Controller.commercial import commercial_controller
+from Controller.support import support_controller
 from Model.base import new_entry, get_entry, get_all, update, delete, filter_table
 from Model.collaborateurs import collaborateurs_colonnes
 from View.base import LOGIN_MENU, CRUD_MENU , affichage_menu, get_user_id, get_object_id, get_object_data
@@ -101,6 +104,15 @@ def retreive_user_profile(id_valide):
 	return profile_utilisateur
 
 
+def menu_selon_departement(profil_utilisateur):
+	if profil_utilisateur["departement"].lower() == "gestion":
+		gestion_controller()
+	elif profil_utilisateur["departement"].lower() == "commercial":
+		commercial_controller()
+	elif profil_utilisateur["departement"].lower() == "support":
+		support_controller()
+	else:
+		return 0
 
 """
 def inscription():
