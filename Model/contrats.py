@@ -13,9 +13,9 @@ def create_table_contrats():
 					montant_redevable TEXT,
 					date_creation TEXT,
                     statut TEXT DEFAULT 'non-signé',
-			  		client_id INTEGER,
-			  		FOREIGN KEY(client_id) REFERENCES clients(rowid), 
+			  		client_id INTEGER, 
 			  		collaborateur_id INTEGER,
+			  		FOREIGN KEY(client_id) REFERENCES clients(rowid),
 			  		FOREIGN KEY(collaborateur_id) REFERENCES collaborateurs(rowid)
 )
 """)

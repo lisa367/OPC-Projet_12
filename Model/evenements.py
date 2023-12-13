@@ -19,8 +19,8 @@ def create_table_evenements():
                     commentaires TEXT,
                     contact_support TEXT,
 			  		contrat_id INTEGER, 
-			  		FOREIGN KEY(contrat_id) REFERENCES contrats(rowid),
 			  		collaborateur_id INTEGER,
+			  		FOREIGN KEY(contrat_id) REFERENCES contrats(rowid),
 			  		FOREIGN KEY(collaborateur_id) REFERENCES collaborateurs(rowid)
 )
 """)
