@@ -7,8 +7,6 @@ contrats_colonnes = ["client_id", "contact_commercial", "montant_facture", "mont
 
 
 def create_table_contrats():
-		# command = f"""CREATE TABLE IF NOT EXISTS {employees}(
-					# title, year, score)"""
 		cur.execute("""CREATE TABLE IF NOT EXISTS contrats(
 					contact_commercial TEXT,
 					montant_facture REAL, 
@@ -16,9 +14,9 @@ def create_table_contrats():
 					date_creation TEXT,
                     statut TEXT DEFAULT 'non-signé',
 			  		client_id INTEGER,
-			  		FOREIGN KEY (client_id) REFERENCES clients (rowid), 
+			  		FOREIGN KEY(client_id) REFERENCES clients(rowid), 
 			  		collaborateur_id INTEGER,
-			  		FOREIGN KEY (collaborateur_id) REFERENCES collaborateurs (rowid)
+			  		FOREIGN KEY(collaborateur_id) REFERENCES collaborateurs(rowid)
 )
 """)
 

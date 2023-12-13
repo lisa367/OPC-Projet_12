@@ -7,9 +7,7 @@ evenements_colonnes = ["nom_evenement", "lieu", "id_contrat", "nom_client", "ema
 
 
 def create_table_evenements():
-		# command = f"""CREATE TABLE IF NOT EXISTS {employees}(
-					# title, year, score)"""
-		cur.execute("""CREATE TABLE IF NOT EXISTS contrats(
+		cur.execute("""CREATE TABLE IF NOT EXISTS evenements(
 					nom_evenement TEXT,
                     lieu TEXT, 
                     nom_client TEXT,
@@ -21,9 +19,9 @@ def create_table_evenements():
                     commentaires TEXT,
                     contact_support TEXT,
 			  		contrat_id INTEGER, 
-			  		FOREIGN KEY (contrat_id) REFERENCES contrats (rowid),
+			  		FOREIGN KEY(contrat_id) REFERENCES contrats(rowid),
 			  		collaborateur_id INTEGER,
-			  		FOREIGN KEY (collaborateur_id) REFERENCES collaborateurs (rowid)
+			  		FOREIGN KEY(collaborateur_id) REFERENCES collaborateurs(rowid)
 )
 """)
 
