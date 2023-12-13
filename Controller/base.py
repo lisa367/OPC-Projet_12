@@ -17,27 +17,30 @@ def quitter():
 
 def connexion():
 	id_utilisateur = get_user_id()
-	profil_utilisateur = get_entry("collaborateurs", id_utilisateur)
-	return profil_utilisateur
+	utilisateur_inscrit = get_entry("collaborateurs", id_utilisateur)
+	if utilisateur_inscrit:
+		return id_utilisateur
+	else:
+		return 0
 
 
 def inscription():
 	data_utilisateur = get_object_data("collaborateur", collaborateurs_colonnes)
 	""" if get_all("collaborateurs" == []):
 		data_utilisateur = [("rowid", 1)] + data_utilisateur """
-	profil_utilisateur = new_entry("collaborateurs", collaborateurs_colonnes, data_utilisateur)
-	return profil_utilisateur
+	nouvel_id_utilisateur = new_entry("collaborateurs", collaborateurs_colonnes, data_utilisateur)
+	return nouvel_id_utilisateur
 
 
 def login():
 	options = {"1": "connexion", "2": "inscription", "3": "quitter"}
 	menu_choisi = affichage_menu(LOGIN_MENU, options)
 	if menu_choisi == "connexion":
-		profil_utilisateur = connexion()
-		return profil_utilisateur
+		id_utilisateur = connexion()
+		return id_utilisateur
 	elif menu_choisi == "inscription":
-		profil_utilisateur = inscription()
-		return profil_utilisateur
+		id_utilisateur = inscription()
+		return id_utilisateur
 	elif menu_choisi == "quitter":
 		quitter()
 	else :
@@ -46,10 +49,11 @@ def login():
 def accueil():
 	show_login_page = True
 	while show_login_page == True:
-		profile_valide = login()
-		if profile_valide :
+		id_valide = login()
+		if id_valide :
+			os.environ["USER_ID"] = id_valide
 			show_login_page = False
-			return profile_valide
+			return id_valide
 		else :
 			print("Veuillez saisir une entrée valide")
 		# login()
