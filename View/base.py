@@ -43,11 +43,18 @@ def get_object_id(object_name):
 
 def get_object_data(object_name, table_columns):
 	object_data = []
+	# object_data = {}
 	print(f"Veuillez renseigner les données du nouveau {object_name} ")
 	for column in table_columns:
 		data = input(f"Valeur pour la colonne '{column}' : ")
 		object_data.append((column, data))
+		# object_data[column] = data
+	print(object_data)
 	return object_data
+
+
+""" def get_data_to_update(table_columns):
+	pass """
 
 
 def get_query_conditions():
