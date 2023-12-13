@@ -4,9 +4,14 @@ con = sqlite3.connect("database.db")
 cur = con.cursor()
 
 def new_entry(table, table_columns, data):
-	# new_row = tuple(data)
-	command = f"""INSERT INTO {table} {table_columns} VALUES{data}"""
-	cur.execute(command)
+	new_row = tuple(data)
+	print(new_row)
+	table_columns_string = ', '.join(table_columns)
+	num_marks = ["?" for column in table_columns]
+	placeholders = ", ".join(num_marks)
+	command = f"""INSERT INTO {table} ({table_columns_string}) VALUES({placeholders})"""
+	print(command)
+	cur.execute(command, new_row)
 	id = cur.lastrowid
 	# new = cur.lastrow
 	con.commit()
@@ -17,7 +22,11 @@ def new_entry(table, table_columns, data):
 
 def new_entries(table, table_columns, data):
 	new_row = tuple(data)
-	command = f"""INSERT INTO {table} {table_columns} VALUES{data}"""
+	table_columns_string = ', '.join(table_columns)
+	num_marks = ["?" for item in table_columns]
+	placeholders = " ".join(num_marks)
+	command = f"""INSERT INTO {table} ({table_columns_string}) VALUES({placeholders})"""
+	print(command)
 	cur.executemany(command, new_row)
 	id = cur.lastrowid
 	# new = cur.lastrow
@@ -29,7 +38,7 @@ def new_entries(table, table_columns, data):
 
 
 def get_entry(table, id):
-	command = f"""SELECT * FROM {table} WHERE {id}"""
+	command = f"""SELECT * FROM {table} WHERE rowid = {id}"""
 	query = cur.execute(command)
 	return query.fetchone()
 
