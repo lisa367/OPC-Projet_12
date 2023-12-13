@@ -5,8 +5,7 @@ cur = con.cursor()
 
 LOGIN_MENU = """
 1 - Connexion
-2 - Inscription
-3 - Quitter
+2 - Quitter
 """
 
 CRUD_MENU = """
@@ -49,7 +48,7 @@ def get_object_data(object_name, table_columns):
 		data = input(f"Valeur pour la colonne '{column}' : ")
 		object_data.append((column, data))
 		# object_data[column] = data
-	print(object_data)
+	#print(object_data)
 	return object_data
 
 

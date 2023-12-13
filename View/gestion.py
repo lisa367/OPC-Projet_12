@@ -1,5 +1,3 @@
-from base import affichage_menu
-    
 GESTION_MENU = """
 1 - Gestion des collaborateurs
 2 - Gestion des contrats
