@@ -53,7 +53,7 @@ def update(table, id, data):
 	con.commit()
 
 def delete(table, id):
-	command = f"DELETE {table} WHERE rowid={id}"
+	command = f"DELETE FROM {table} WHERE rowid={id}"
 	cur.execute(command)
 	con.commit()
 	
