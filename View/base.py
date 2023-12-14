@@ -36,14 +36,14 @@ def get_object_id(object_name):
 	if object_name == "evenment":
 		id_objet = input("Veuiller renseigner l'identifiant de l'évènement")
 	else:
-		id_objet = input(f"Veuiller renseigner l'identifiant du {object_name}")
+		id_objet = input(f"Veuiller renseigner l'identifiant du {object_name} : ")
 	return id_objet
 
 
 def get_object_data(object_name, table_columns):
 	object_data = []
 	# object_data = {}
-	print(f"Veuillez renseigner les données du nouveau {object_name} ")
+	print(f"Veuillez renseigner les données du nouveau {object_name} : ")
 	for column in table_columns:
 		data = input(f"Valeur pour la colonne '{column}' : ")
 		object_data.append((column, data))
