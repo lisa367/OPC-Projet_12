@@ -1,5 +1,3 @@
-# from Model.base import new_entry, get_entry, get_all
-# from Model.collaborateurs import collaborateurs_colonnes
 from Model.base import filter_table, update
 from Model.collaborateurs import collaborateurs_colonnes
 from Model.contrats import contrats_colonnes
@@ -8,18 +6,6 @@ from View.base import CRUD_MENU, affichage_menu, get_query_filters, get_object_i
 from View.gestion import GESTION_MENU
 from .base import operations_crud, modifier, quitter, afficher_table
 
-""" 
-def gestion_collaborateurs():
-	print("Ajouter, modifier, ou supprimer un collaborateur")
-	options = {"1": "ajouter", "2": "modifier", "3": "supprimer", "4": "retour", }
-	option_choisie = affichage_menu(CRUD_MENU, options)
-
-
-def gestion_contrats():
-	print("Ajouter, modifier, ou supprimer un contrat")
-	options = {"1": "ajouter", "2": "modifier", "3": "supprimer", "4": "retour", }
-	option_choisie = affichage_menu(CRUD_MENU, options)
- """
 
 def affichage_evenements():
 	columns, conditions = get_query_filters(evenements_colonnes)
