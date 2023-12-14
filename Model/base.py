@@ -43,7 +43,7 @@ def get_entry(table, id):
 	return query.fetchone()
 
 def get_all(table):
-	command = f"""SELECT * FROM {table}"""
+	command = f"""SELECT rowid, * FROM {table}"""
 	query = cur.execute(command)
 	return query.fetchall()
 		
