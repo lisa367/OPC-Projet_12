@@ -52,41 +52,38 @@ def get_object_data(object_name, table_columns):
 	return object_data
 
 
-""" def get_data_to_update(table_columns):
-	pass """
-
-
 def get_query_conditions():
 	stop = False
 	conditions = []
 	while not stop:
 		ajout = input("Ajouter une condition ? oui ou non : ")
 		if ajout.lower() == "oui":
-			if condition :
-				AND_or_OR = input("AND ou OR").strip()
+			if conditions:
+				AND_or_OR = input("AND ou OR : ").strip()
 				while AND_or_OR not in ["AND", "OR"]:
-					pass
-			condition = input("Renseignez votre condition : ")
+					print("Veuillez saisir une entrée valide. ")
+					AND_or_OR = input("AND ou OR").strip()
+				condition = input("Renseignez votre condition : ")
+			else:
+				condition = input("Renseignez votre condition : ")
+				AND_or_OR = input("AND ou OR : ").strip()
+				""" while AND_or_OR not in ["AND", "OR"]:
+					print("Veuillez saisir une entrée valide. ")
+					AND_or_OR = input("AND ou OR : ").strip() """
+				condition = input("Renseignez votre condition : ")
 		else:
 			stop = True
 	return conditions
 
 def get_query_filters(table_columns):
-	columns_names = ", ".join(table_columns)
-	print(f"""Colonnes de la table :\n{columns_names})""")
-	selected_columns = input("Veuillez renseigner les colonnes à afficher, séparées d'un espace")
+	print(f"""Colonnes de la table :\n{table_columns})""")
+	selected_columns_raw = input("Veuillez renseigner les colonnes à afficher, séparées d'un espace : ")
+	selected_columns = ", ".join(selected_columns_raw.split(" "))
 	conditions_list = get_query_conditions()
 	selected_conditions = " ".join(conditions_list)
+	return selected_columns, selected_conditions
 
 
 def add_or_modify(object):
 	action = input(f"Add (1) or modify (2) {object}. Enter 1 or 2 :")
 	return action
-
-"""
-def login_menu():
-	options = {"1": "connexion", "2": "inscription", "3": "quitter"}
-	print(LOGIN_MENU)
-	choix_option = input("Veuillez choisir une option (1, 2, ou 3) : ")
-	return options.get(choix_option, 0)
-"""
