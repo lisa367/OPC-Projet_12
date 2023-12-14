@@ -15,7 +15,7 @@ CRUD_MENU = """
 4 - Retour
 """
 
-GENERAL_MENU = """
+TABLE_MENU = """
 Recherchez :
 1 - Un (des) client(s)
 2 - Un (des) contrat(s)
