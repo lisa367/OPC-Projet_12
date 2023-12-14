@@ -4,7 +4,7 @@ import sqlite3
 
 from Model.base import new_entry, get_entry, get_all, update, delete, filter_table
 from Model.collaborateurs import collaborateurs_colonnes
-from View.base import LOGIN_MENU, CRUD_MENU , affichage_menu, get_user_id, get_object_id, get_object_data
+from View.base import LOGIN_MENU, CRUD_MENU, TABLE_MENU, affichage_menu, get_user_id, get_object_id, get_object_data
 
 
 con = sqlite3.connect("database.db")
@@ -79,6 +79,15 @@ def operations_crud(object_name, table_name, table_columns, default_values=None)
 
 		else :
 			print("Veuillez saisir une entrée valide")
+
+
+def afficher_table():
+	table_choisie = affichage_menu(TABLE_MENU, {"1": "clients", "2": "contrats", "3": "evenements"})
+	if table_choisie in ["clients", "contrats", "evenements"]:
+		query_result = get_all(table_choisie)
+		print(query_result)
+	else:
+		print("Veuillez saisir une entrée valide")
 
 
 def quitter():

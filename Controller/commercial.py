@@ -5,7 +5,7 @@ from Model.clients import clients_colonnes
 from Model.evenements import evenements_colonnes
 from View.base import affichage_menu, get_object_id, get_query_filters, add_or_modify, get_object_data
 from View.commercial import COMMERCIAL_MENU
-from .base import ajouter, modifier, quitter, operations_crud
+from .base import ajouter, modifier, quitter, operations_crud, afficher_table
 
 def commercial_controller():
 	show_menu = True
@@ -34,7 +34,7 @@ def commercial_controller():
 				modifier("evenement", "evenements", evenements_colonnes) """
 
 		elif menu_choisi == "afficher-table":
-				pass
+				afficher_table()
 
 		elif menu_choisi == "quitter":
 			show_menu = False

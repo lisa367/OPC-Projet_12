@@ -6,7 +6,7 @@ from Model.contrats import contrats_colonnes
 from Model.evenements import evenements_colonnes
 from View.base import CRUD_MENU, affichage_menu, get_query_filters, get_object_id, get_object_data
 from View.gestion import GESTION_MENU
-from .base import operations_crud, modifier, quitter
+from .base import operations_crud, modifier, quitter, afficher_table
 
 """ 
 def gestion_collaborateurs():
@@ -49,7 +49,7 @@ def gestion_controller():
 		elif menu_choisi == "support-evenements":
 			support_evenements()
 		elif menu_choisi == "afficher-table":
-			pass
+			afficher_table()
 		elif menu_choisi == "quitter":
 			show_menu = False
 		else :
