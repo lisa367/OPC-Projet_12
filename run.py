@@ -5,7 +5,9 @@ from Controller.gestion import gestion_controller
 from Controller.commercial import commercial_controller
 from Controller.support import support_controller
 
-
+""" SENTRY_DSN = os.getenv("SENTRY_DSN")
+print(SENTRY_DSN)
+ """
 def menu_selon_departement(profil_utilisateur):
 	if profil_utilisateur["departement"].lower() == "gestion":
 		gestion_controller()
