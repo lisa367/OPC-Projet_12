@@ -22,7 +22,7 @@ def commercial_controller():
 
 		elif menu_choisi == "affichage-contrats":
 			columns, conditions = get_query_filters(contrats_colonnes)
-			query_result = filter_table("contrats", columns, conditions)
+			query_result = filter_table(table="contrats", columns=columns, conditions=conditions)
 			print(query_result)
 
 		elif menu_choisi == "evenements":
