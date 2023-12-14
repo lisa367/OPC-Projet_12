@@ -1,37 +1,57 @@
 # from Model.base import new_entry, get_entry, get_all
 # from Model.collaborateurs import collaborateurs_colonnes
-from View.base import CRUD_MENU, affichage_menu, operations_crud
+from Model.base import filter_table, update
+from Model.collaborateurs import collaborateurs_colonnes
+from Model.contrats import contrats_colonnes
+from Model.evenements import evenements_colonnes
+from View.base import CRUD_MENU, affichage_menu, get_query_filters, get_object_id, get_object_data
 from View.gestion import GESTION_MENU
+from .base import operations_crud, modifier, quitter
 
+""" 
 def gestion_collaborateurs():
 	print("Ajouter, modifier, ou supprimer un collaborateur")
 	options = {"1": "ajouter", "2": "modifier", "3": "supprimer", "4": "retour", }
 	option_choisie = affichage_menu(CRUD_MENU, options)
 
+
 def gestion_contrats():
 	print("Ajouter, modifier, ou supprimer un contrat")
 	options = {"1": "ajouter", "2": "modifier", "3": "supprimer", "4": "retour", }
 	option_choisie = affichage_menu(CRUD_MENU, options)
+ """
 
 def affichage_evenements():
-	pass
+	columns, conditions = get_query_filters(evenements_colonnes)
+	query_result = filter_table("evenements", columns, conditions)
+	print(query_result)
+
 
 def support_evenements():
-	pass
+	# modifier(object_name, table_name, table_columns)
+	id_evenement = get_object_id()
+	data_evenement = get_object_data("evenement", ["support_collaborateur_id"])
+	update("evenements", id_evenement, data_evenement)
+
 
 def gestion_controller():
-	options = {"1": "collaborateurs", "2": "contrats", "3": "affichage-evenements", "4": "support-evenements", }
-	menu_choisi = affichage_menu(GESTION_MENU, options)
+	show_menu = True
+	while show_menu:
+		options = {"1": "gestion-collaborateurs", "2": "gestion-contrats", "3": "affichage-evenements", "4": "support-evenements", "5": "afficher-table", "6": "quitter"}
+		menu_choisi = affichage_menu(GESTION_MENU, options)
 
-	if menu_choisi == "collaborateurs":
-		pass
-		# operations_crud(object_name="collaborateurs", table_name="collaborateurs", table_columns=collaborateurs_colonnes)
-	elif menu_choisi == "contrats":
-		pass
-		# operations_crud(object_name, table_name, table_columns)
-	elif menu_choisi == "affichage-evenements":
-		affichage_evenements()
-	elif menu_choisi == "support-evenements":
-		support_evenements()
-	else :
-		return 0
+		if menu_choisi == "gestion-collaborateurs":
+			operations_crud(object_name="collaborateur", table_name="collaborateurs", table_columns=collaborateurs_colonnes)
+		elif menu_choisi == "gestion-contrats":
+			operations_crud(object_name="contrat", table_name="contrats", table_columns=contrats_colonnes)
+		elif menu_choisi == "affichage-evenements":
+			affichage_evenements()
+		elif menu_choisi == "support-evenements":
+			support_evenements()
+		elif menu_choisi == "afficher-table":
+			pass
+		elif menu_choisi == "quitter":
+			show_menu = False
+		else :
+			print("Veuillez saisir une entrée valide")
+	quitter()
