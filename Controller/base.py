@@ -37,7 +37,7 @@ def ajouter(object_name, table_name, table_columns, default_values=None):
 	else: 
 		raw_data = get_object_data(object_name, table_columns)
 
-	values_list = [data[1] for data in raw_data]
+	values_list = [int(data[1]) if data[1].isdigit() else data[1] for data in raw_data]
 	# data_string = ", ".join(values_list)
 	# table_columns_string = ', '.join(table_columns)
 	# print("Before save : ",table_columns)
