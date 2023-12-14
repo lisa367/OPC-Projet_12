@@ -10,10 +10,13 @@ from View.base import LOGIN_MENU, CRUD_MENU, TABLE_MENU, affichage_menu, get_use
 con = sqlite3.connect("database.db")
 cur = con.cursor()
 
-def has_permission(table_name, table_columns, filter_column, object_id, user_id):
+def permission_check(object_id, table_name, table_columns, filter_column, user_id):
 	entry = get_entry(table_name, object_id)
 	entry_zipped = zip(table_columns, entry)
 	entry_dict = {column: value for column, value in entry_zipped}
+	has_permission = (entry_dict.get(filter_column) == user_id)
+	return has_permission
+
 
 
 def ajouter(object_name, table_name, table_columns, default_values=None):
@@ -45,8 +48,16 @@ def ajouter(object_name, table_name, table_columns, default_values=None):
 	return new_id
 
 
-def modifier(object_name, table_name, table_columns):
+def modifier(object_name, table_name, table_columns, filter_column=None, user_id=None):
 	object_id = get_object_id(object_name)
+
+	if filter_column and user_id:
+		USER_ID = os.getenv("USER_ID")
+		has_permission = permission_check(object_id=object_id, table_name=table_name, table_columns=table_columns, filter_column=filter_column, user_id=USER_ID)
+		if not has_permission:
+			print("Vous n'avez pas l'authorization pour effectuer cette opération.")
+			return 0
+
 	print("Renseignez les nouvelles valeurs pour les colonnes à modifier ou tapez sur Entrée.")
 	raw_data = get_object_data(object_name, table_columns)
 	data_list = [f"{data[0]} = '{data[1]}'" for data in raw_data if data[1]]
