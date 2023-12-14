@@ -10,12 +10,12 @@ from .base import ajouter, modifier, quitter, operations_crud
 def commercial_controller():
 	show_menu = True
 	while show_menu:
-		options = {"1": "clients", "2": "modification-contrats", "3": "affichage-contrats", "4": "evenements", "6": "quitter"}
+		options = {"1": "clients", "2": "modification-contrats", "3": "affichage-contrats", "4": "evenements", "5": "afficher-table", "6": "quitter"}
 		menu_choisi = affichage_menu(COMMERCIAL_MENU, options)
 
 		if menu_choisi == "clients":
 			USER_ID = os.getenv("USER_ID")
-			operations_crud(object_name="client", table_name="clients", table_columns=clients_colonnes, default_values=[("collaborateur_id", USER_ID)] )
+			operations_crud(object_name="client", table_name="clients", table_columns=clients_colonnes, default_values=[("collaborateur_id", USER_ID)])
 
 		elif menu_choisi == "modification-contrats":
 			modifier("contrat", "contrats", contrats_colonnes)
@@ -26,15 +26,15 @@ def commercial_controller():
 			print(query_result)
 
 		elif menu_choisi == "evenements":
-			action = add_or_modify("evenement")
-
+			ajouter("evenement", "evenements", evenements_colonnes)
+			""" action = add_or_modify("evenement")
 			if action == "ajouter":
 				ajouter("evenement", "evenements", evenements_colonnes)
-
 			elif action == "modifier":
-				id_evenement = get_object_id("evenement")
-				data_evenement = get_object_data("evenement", evenements_colonnes)
-				update("evenements", id_evenement ,data_evenement)
+				modifier("evenement", "evenements", evenements_colonnes) """
+
+		elif menu_choisi == "afficher-table":
+				pass
 
 		elif menu_choisi == "quitter":
 			show_menu = False
