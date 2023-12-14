@@ -10,19 +10,26 @@ from View.base import LOGIN_MENU, CRUD_MENU , affichage_menu, get_user_id, get_o
 con = sqlite3.connect("database.db")
 cur = con.cursor()
 
+def has_permission(table_name, table_columns, filter_column, object_id, user_id):
+	entry = get_entry(table_name, object_id)
+	entry_zipped = zip(table_columns, entry)
+	entry_dict = {column: value for column, value in entry_zipped}
+
+
 def ajouter(object_name, table_name, table_columns, default_values=None):
+	# print("INITIAL : ",table_columns)
 	if default_values:
 		# default_values = liste de tuples de type (colonne, valeur_par_defaut)
 		values_index = {}
-		new_table_columns = table_columns
-
+		new_table_columns = [label for label in table_columns]
+		# print(table_columns)
 		for value_tuple in default_values:
 			index = table_columns.index(value_tuple[0])
 			values_index[index] = value_tuple
 			new_table_columns.remove(value_tuple[0])
 		raw_data = get_object_data(object_name, new_table_columns)
 
-		for i in len(table_columns):
+		for i in range(len(table_columns)+1):
 			if i in values_index.keys():
 				raw_data.insert(i, values_index[i])
 		print(raw_data)
@@ -30,10 +37,11 @@ def ajouter(object_name, table_name, table_columns, default_values=None):
 	else: 
 		raw_data = get_object_data(object_name, table_columns)
 
-	data_list = [data[1] for data in raw_data]
-	data_string = ", ".join(data_list)
+	values_list = [data[1] for data in raw_data]
+	# data_string = ", ".join(values_list)
 	# table_columns_string = ', '.join(table_columns)
-	new_id = new_entry(table_name, table_columns, data_list)
+	# print("Before save : ",table_columns)
+	new_id = new_entry(table_name, table_columns, values_list)
 	return new_id
 
 
@@ -57,7 +65,7 @@ def operations_crud(object_name, table_name, table_columns, default_values=None)
 		option_choisie = affichage_menu(CRUD_MENU, options)
 
 		if option_choisie == "ajouter":
-			ajouter(object_name, table_name, table_columns, default_values=None)
+			ajouter(object_name, table_name, table_columns, default_values)
 
 		elif option_choisie == "modifier":
 			modifier(object_name, table_name, table_columns)
