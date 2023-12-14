@@ -3,7 +3,7 @@ import sqlite3
 con = sqlite3.connect("database.db")
 cur = con.cursor()
 
-clients_colonnes = ["nom_complet", "email", "telephone", "nom_entreprise", "date_premier_contact", "date_dernier_contact", "collaborateur_id",]
+clients_colonnes = ["nom_complet", "email", "telephone", "nom_entreprise", "date_premier_contact", "date_dernier_contact", "contact_commercial", "collaborateur_id",]
 
 
 def create_table_clients():

@@ -3,7 +3,7 @@ import sqlite3
 con = sqlite3.connect("database.db")
 cur = con.cursor()
 
-evenements_colonnes = ["nom_evenement", "lieu", "id_contrat", "nom_client", "email_client", "telephone_client", "date_debut", "date_fin", "nombre_invites", "commentaires", "contact_support", "collaborateur_id", ]
+evenements_colonnes = ["nom_evenement", "lieu", "id_contrat", "nom_client", "email_client", "telephone_client", "date_debut", "date_fin", "nombre_invites", "commentaires", "contact_support", "support_collaborateur_id", ]
 
 
 def create_table_evenements():

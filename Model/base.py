@@ -10,7 +10,7 @@ def new_entry(table, table_columns, data):
 	num_marks = ["?" for column in table_columns]
 	placeholders = ", ".join(num_marks)
 	command = f"""INSERT INTO {table} ({table_columns_string}) VALUES({placeholders})"""
-	print(command)
+	# print(command)
 	cur.execute(command, new_row)
 	id = cur.lastrowid
 	# new = cur.lastrow
@@ -56,6 +56,7 @@ def delete(table, id):
 	command = f"DELETE FROM {table} WHERE rowid={id}"
 	cur.execute(command)
 	con.commit()
+	print("Successfully deleted")
 	
 
 def filter_table(table, columns=None, conditions=None):
