@@ -10,8 +10,26 @@ from View.base import LOGIN_MENU, CRUD_MENU , affichage_menu, get_user_id, get_o
 con = sqlite3.connect("database.db")
 cur = con.cursor()
 
-def ajouter(object_name, table_name, table_columns):
-	raw_data = get_object_data(object_name, table_columns)
+def ajouter(object_name, table_name, table_columns, default_values=None):
+	if default_values:
+		# default_values = liste de tuples de type (colonne, valeur_par_defaut)
+		values_index = {}
+		new_table_columns = table_columns
+
+		for value_tuple in default_values:
+			index = table_columns.index(value_tuple[0])
+			values_index[index] = value_tuple
+			new_table_columns.remove(value_tuple[0])
+		raw_data = get_object_data(object_name, new_table_columns)
+
+		for i in len(table_columns):
+			if i in values_index.keys():
+				raw_data.insert(i, values_index[i])
+		print(raw_data)
+
+	else: 
+		raw_data = get_object_data(object_name, table_columns)
+
 	data_list = [data[1] for data in raw_data]
 	data_string = ", ".join(data_list)
 	# table_columns_string = ', '.join(table_columns)
@@ -31,7 +49,7 @@ def modifier(object_name, table_name, table_columns):
 
 
 
-def operations_crud(object_name, table_name, table_columns):
+def operations_crud(object_name, table_name, table_columns, default_values=None):
 	show_crud_menu = True
 	while show_crud_menu :
 		print(f"Ajouter, modifier, ou supprimer un {object_name}")
@@ -39,7 +57,7 @@ def operations_crud(object_name, table_name, table_columns):
 		option_choisie = affichage_menu(CRUD_MENU, options)
 
 		if option_choisie == "ajouter":
-			ajouter(object_name, table_name, table_columns)
+			ajouter(object_name, table_name, table_columns, default_values=None)
 
 		elif option_choisie == "modifier":
 			modifier(object_name, table_name, table_columns)
@@ -52,7 +70,7 @@ def operations_crud(object_name, table_name, table_columns):
 			show_crud_menu = False
 
 		else :
-			return 0
+			print("Veuillez saisir une entrée valide")
 
 
 def quitter():
@@ -67,7 +85,6 @@ def connexion():
 		return id_utilisateur
 	else:
 		return 0
-
 
 
 def login_menu():
