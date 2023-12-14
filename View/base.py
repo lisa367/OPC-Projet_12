@@ -66,11 +66,11 @@ def get_query_conditions():
 				condition = input("Renseignez votre condition : ")
 			else:
 				condition = input("Renseignez votre condition : ")
-				AND_or_OR = input("AND ou OR : ").strip()
-				""" while AND_or_OR not in ["AND", "OR"]:
+				"""AND_or_OR = input("AND ou OR : ").strip()
+				 	while AND_or_OR not in ["AND", "OR"]:
 					print("Veuillez saisir une entrée valide. ")
-					AND_or_OR = input("AND ou OR : ").strip() """
-				condition = input("Renseignez votre condition : ")
+					AND_or_OR = input("AND ou OR : ").strip() 
+				condition = input("Renseignez votre condition : ")"""
 		else:
 			stop = True
 	return conditions
