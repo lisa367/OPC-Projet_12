@@ -20,11 +20,11 @@ def menu_selon_departement(profil_utilisateur):
 
 
 def run_program():
-	""" sentry_sdk.init(
+	sentry_sdk.init(
     dsn="https://a09900948fc542f2e4474a0f0e5e66a4@o4506244442554368.ingest.sentry.io/4506377879289856",
     traces_sample_rate=1.0,
     profiles_sample_rate=1.0,
-) """
+)
 	# division_by_zero = 1 / 0
 	accueil()
 	USER_ID = int(os.getenv("USER_ID"))
