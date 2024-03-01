@@ -20,7 +20,6 @@ Votre répertoire local devrait désormais avoir la structure suivante :
         | requirements.txt
 </pre>
 <br>
-
 ---
 
 ## <b>Etape 2</b>
