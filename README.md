@@ -20,7 +20,6 @@ Votre répertoire local devrait désormais avoir la structure suivante :
         | requirements.txt
 </pre>
 <br>
-<br>
 
 ---
 
@@ -31,14 +30,16 @@ Créez un environnement virtuel dans le répertoire et activez-le en utilisant l
 `conda create --name <name> python=3.9` \
 `conda activate <name>`
 <br>
-<br>
+
 Pour désactiver l'environnement virtuel : \
 `conda deactivate`
+<br>	
 
 ---
 
-## <b>Etape 4</b>
+## <b>Etape 3</b>
 Modifiez la configuration de sentry avec vos propres éléments de configuration. 
+<br>
 
 ---
 
